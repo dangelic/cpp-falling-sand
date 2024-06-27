@@ -4,6 +4,6 @@ Turns out, this simple program transforms simple mouse-hold-downs into structure
 
 Inspired by [The Coding Train](https://www.youtube.com/watch?v=L4u7Zy_b868) ; written in C++ instead of JS for performance. :-)
 
-<img src="demo.png" width="300" height="300">
+<img src="demo.png" width="500" height="400">
 
 
