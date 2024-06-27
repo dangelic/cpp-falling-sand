@@ -9,6 +9,7 @@ public:
     void update();
 private:
     Grid* grid;
+    int calculateFallSpeed(int depth); // Function to calculate fall speed based on depth
 };
 
 #endif // ANIMATION_H

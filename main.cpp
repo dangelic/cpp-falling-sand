@@ -29,9 +29,9 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    Renderer sdlRenderer(renderer);  
-    Grid grid(renderer); 
-    Animation animation(&grid);  
+    Renderer sdlRenderer(renderer);
+    Grid grid(renderer);  
+    Animation animation(&grid);
 
     // Main loop flag
     bool quit = false;
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
 
     // Timer for animation updates
     Uint32 lastUpdateTime = SDL_GetTicks();
-    Uint32 animationDelay = 50; // ms
+    Uint32 animationDelay = 100; // ms
 
     // Main loop
     while (!quit) {
