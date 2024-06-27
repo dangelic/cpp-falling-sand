@@ -13,16 +13,19 @@ void Animation::update() {
                 if (j + 1 < GRID_HEIGHT && !grid->cells[i][j + 1].isActive) {
                     grid->cells[i][j].isActive = false;
                     grid->cells[i][j + 1].isActive = true;
+                    grid->cells[i][j + 1].color = grid->cells[i][j].color; // Propagate color downward
                 } else {
                     // Attempt to move diagonally left or right
                     bool moved = false;
                     if (i > 0 && j + 1 < GRID_HEIGHT && !grid->cells[i - 1][j + 1].isActive) {
                         grid->cells[i][j].isActive = false;
                         grid->cells[i - 1][j + 1].isActive = true;
+                        grid->cells[i - 1][j + 1].color = grid->cells[i][j].color; // Propagate color downward
                         moved = true;
                     } else if (i < GRID_WIDTH - 1 && j + 1 < GRID_HEIGHT && !grid->cells[i + 1][j + 1].isActive) {
                         grid->cells[i][j].isActive = false;
                         grid->cells[i + 1][j + 1].isActive = true;
+                        grid->cells[i + 1][j + 1].color = grid->cells[i][j].color; // Propagate color downward
                         moved = true;
                     }
                 }

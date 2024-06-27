@@ -31,6 +31,8 @@ int main(int argc, char* argv[]) {
 
     Renderer sdlRenderer(renderer); 
     Grid grid(renderer);
+    float hueTweak = 5.0f; // TODO: Outsource
+    grid.setColorTweak(hueTweak);
     Animation animation(&grid); 
 
     // Main loop flag
@@ -43,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     // Timer for animation updates
     Uint32 lastUpdateTime = SDL_GetTicks();
-    Uint32 animationDelay = 100; // ms
+    Uint32 animationDelay = 40; // ms
 
     // Main loop
     while (!quit) {
@@ -80,7 +82,7 @@ int main(int argc, char* argv[]) {
         }
 
         // Clear screen
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
         // Render grid
