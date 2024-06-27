@@ -1,25 +1,26 @@
-// Grid.h
-
 #ifndef GRID_H
 #define GRID_H
 
-#include "Cell.h"
 #include <SDL.h>
+
+const int GRID_WIDTH = 80;
+const int GRID_HEIGHT = 60;
+
+struct Cell {
+    bool isActive;
+};
 
 class Grid {
 public:
-    static const int GRID_WIDTH = 100;
-    static const int GRID_HEIGHT = 100;
-
-    Grid(SDL_Renderer* renderer); 
+    Grid(SDL_Renderer* renderer);
     ~Grid();
-
     void handleClick(int mouseX, int mouseY);
-    void update(); 
-    void render(); 
+    void update();
+    void render();
+
+    Cell cells[GRID_WIDTH][GRID_HEIGHT];
 
 private:
-    Cell cells[GRID_WIDTH][GRID_HEIGHT];
     SDL_Renderer* renderer;
 };
 

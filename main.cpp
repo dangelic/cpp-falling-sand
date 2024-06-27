@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include "include/Renderer.h"
 #include "include/Grid.h"
+#include "include/Animation.h"
 
 int main(int argc, char* argv[]) {
     // Initialize SDL and create window
@@ -28,38 +29,49 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    Renderer sdlRenderer(renderer);  // Instantiate Renderer with SDL_Renderer
-    Grid grid(renderer);  // Instantiate Grid with SDL_Renderer
+    Renderer sdlRenderer(renderer); 
+    Grid grid(renderer);
+    Animation animation(&grid); 
 
+    // Main loop flag
     bool quit = false;
 
     // Event handler
     SDL_Event e;
 
+    // Timer for animation updates
+    Uint32 lastUpdateTime = SDL_GetTicks();
+    Uint32 animationDelay = 40; // ms
+
     // Main loop
     while (!quit) {
-
+        // Handle events on queue
         while (SDL_PollEvent(&e) != 0) {
-
+            // User requests quit
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
-
+            // Pass events to the renderer for handling
+            sdlRenderer.handleEvent(e);
             if (e.type == SDL_MOUSEBUTTONDOWN) {
-                int mouseX = e.button.x;
-                int mouseY = e.button.y;
-                grid.handleClick(mouseX, mouseY);  // Pass click event to grid
+                int mouseX, mouseY;
+                SDL_GetMouseState(&mouseX, &mouseY);
+                grid.handleClick(mouseX, mouseY);
             }
         }
 
+        // Update grid state with animation logic if enough time has passed
+        Uint32 currentTime = SDL_GetTicks();
+        if (currentTime - lastUpdateTime >= animationDelay) {
+            animation.update();
+            lastUpdateTime = currentTime;
+        }
 
-        grid.update();
-
-
+        // Clear screen
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
 
-
+        // Render grid
         grid.render();
 
         // Update screen

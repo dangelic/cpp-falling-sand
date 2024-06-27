@@ -1,5 +1,3 @@
-// Grid.cpp
-
 #include "../include/Grid.h"
 #include <iostream>
 
@@ -13,27 +11,26 @@ Grid::Grid(SDL_Renderer* renderer) : renderer(renderer) {
 }
 
 Grid::~Grid() {
-    // Cleanup !
+    // Cleanup ?
 }
 
 void Grid::handleClick(int mouseX, int mouseY) {
-
+    // Determine which cell was clicked based on mouse coordinates
     int cellX = mouseX / (800 / GRID_WIDTH);
     int cellY = mouseY / (600 / GRID_HEIGHT);
 
     if (cellX >= 0 && cellX < GRID_WIDTH && cellY >= 0 && cellY < GRID_HEIGHT) {
         cells[cellX][cellY].isActive = !cells[cellX][cellY].isActive;
         std::cout << "Cell (" << cellX << ", " << cellY << ") state changed to " << (cells[cellX][cellY].isActive ? "active" : "inactive") << std::endl;
-
     }
 }
 
 void Grid::update() {
-    // Update !
+    // Update grid state
 }
 
 void Grid::render() {
-
+    // Render grid
     for (int i = 0; i < GRID_WIDTH; ++i) {
         for (int j = 0; j < GRID_HEIGHT; ++j) {
             if (cells[i][j].isActive) {
