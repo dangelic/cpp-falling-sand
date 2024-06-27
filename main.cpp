@@ -29,19 +29,21 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    Renderer sdlRenderer(renderer); 
-    Grid grid(renderer);
-    Animation animation(&grid); 
+    Renderer sdlRenderer(renderer);  
+    Grid grid(renderer); 
+    Animation animation(&grid);  
 
     // Main loop flag
     bool quit = false;
+    bool mouseHeld = false;
+    int mouseX, mouseY;
 
     // Event handler
     SDL_Event e;
 
     // Timer for animation updates
     Uint32 lastUpdateTime = SDL_GetTicks();
-    Uint32 animationDelay = 40; // ms
+    Uint32 animationDelay = 50; // ms
 
     // Main loop
     while (!quit) {
@@ -51,13 +53,23 @@ int main(int argc, char* argv[]) {
             if (e.type == SDL_QUIT) {
                 quit = true;
             }
-            // Pass events to the renderer for handling
-            sdlRenderer.handleEvent(e);
+            // Handle mouse events
             if (e.type == SDL_MOUSEBUTTONDOWN) {
-                int mouseX, mouseY;
+                mouseHeld = true;
                 SDL_GetMouseState(&mouseX, &mouseY);
                 grid.handleClick(mouseX, mouseY);
             }
+            if (e.type == SDL_MOUSEBUTTONUP) {
+                mouseHeld = false;
+            }
+            if (e.type == SDL_MOUSEMOTION && mouseHeld) {
+                SDL_GetMouseState(&mouseX, &mouseY);
+            }
+        }
+
+        // Spawn grains if mouse is held down
+        if (mouseHeld) {
+            grid.spawnRandomGrain(mouseX, mouseY);
         }
 
         // Update grid state with animation logic if enough time has passed

@@ -15,6 +15,7 @@ public:
     Grid(SDL_Renderer* renderer);
     ~Grid();
     void handleClick(int mouseX, int mouseY);
+    void spawnRandomGrain(int mouseX, int mouseY);
     void update();
     void render();
 
