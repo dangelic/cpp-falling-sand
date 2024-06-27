@@ -10,7 +10,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    SDL_Window* window = SDL_CreateWindow("SDL2 Window",
+    SDL_Window* window = SDL_CreateWindow("Life is a Grain of Sand",
                                           SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED,
                                           800, 600,
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]) {
 
     Renderer sdlRenderer(renderer); 
     Grid grid(renderer);
-    float hueTweak = 5.0f; // TODO: Outsource
+    float hueTweak = 3.0f; // TODO: Outsource
     grid.setColorTweak(hueTweak);
     Animation animation(&grid); 
 
@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 
     // Timer for animation updates
     Uint32 lastUpdateTime = SDL_GetTicks();
-    Uint32 animationDelay = 40; // ms
+    Uint32 animationDelay = 5; // ms
 
     // Main loop
     while (!quit) {

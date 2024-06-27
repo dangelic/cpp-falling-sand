@@ -3,8 +3,8 @@
 
 #include <SDL.h>
 
-const int GRID_WIDTH = 80;
-const int GRID_HEIGHT = 60;
+const int GRID_WIDTH = 80 * 1.25;
+const int GRID_HEIGHT = 60 * 1.25;
 
 struct Cell {
     bool isActive;
