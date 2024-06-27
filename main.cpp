@@ -29,9 +29,9 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    Renderer sdlRenderer(renderer);
-    Grid grid(renderer);  
-    Animation animation(&grid);
+    Renderer sdlRenderer(renderer); 
+    Grid grid(renderer);
+    Animation animation(&grid); 
 
     // Main loop flag
     bool quit = false;
