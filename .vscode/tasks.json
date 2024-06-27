@@ -10,6 +10,7 @@
                 "-I/opt/homebrew/Cellar/sdl2/2.30.4/include/SDL2",
                 "-L/opt/homebrew/Cellar/sdl2/2.30.4/lib",
                 "${workspaceFolder}/src/Renderer.cpp",  // Include Renderer.cpp here
+                "${workspaceFolder}/src/Grid.cpp",
                 "-lSDL2",
                 "-g",
                 "${file}",

@@ -1,3 +1,5 @@
+// Renderer.h
+
 #ifndef RENDERER_H
 #define RENDERER_H
 
@@ -5,19 +7,14 @@
 
 class Renderer {
 public:
-    Renderer();
-    ~Renderer();
+    Renderer(SDL_Renderer* renderer);
+    ~Renderer(); 
 
-    void initialize();
-    void render();
     void handleEvent(SDL_Event& e);
+    void render(); 
 
 private:
-    SDL_Window* window;
     SDL_Renderer* renderer;
-    bool canvas[80][60]; // 80x60 canvas, each cell represents a pixel
-
-    void drawCanvas();
 };
 
 #endif // RENDERER_H
