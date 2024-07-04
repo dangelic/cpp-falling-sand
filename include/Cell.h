@@ -2,7 +2,8 @@
 #ifndef CELL_H
 #define CELL_H
 
-struct Cell {
+struct Cell 
+{
     bool isActive;
 };
 

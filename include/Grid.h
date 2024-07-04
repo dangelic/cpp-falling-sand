@@ -6,12 +6,14 @@
 const int GRID_WIDTH = 80 * 1.25;
 const int GRID_HEIGHT = 60 * 1.25;
 
-struct Cell {
+struct Cell 
+{
     bool isActive;
     SDL_Color color; // Color of the cell
 };
 
-class Grid {
+class Grid 
+{
 public:
     Grid(SDL_Renderer* renderer);
     ~Grid();

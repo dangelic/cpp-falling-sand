@@ -3,7 +3,8 @@
 
 #include "Grid.h"
 
-class Animation {
+class Animation 
+{
 public:
     Animation(Grid* grid);
     void update();

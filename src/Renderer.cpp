@@ -1,19 +1,21 @@
-// Renderer.cpp
-
 #include "../include/Renderer.h"
 
-Renderer::Renderer(SDL_Renderer* renderer) : renderer(renderer) {
+Renderer::Renderer(SDL_Renderer* renderer) : renderer(renderer) 
+{
     // Initialize any other resources !
 }
 
-Renderer::~Renderer() {
+Renderer::~Renderer() 
+{
     // Cleanup resources !
 }
 
-void Renderer::handleEvent(SDL_Event& e) {
+void Renderer::handleEvent(SDL_Event& e) 
+{
     // 
 }
 
-void Renderer::render() {
+void Renderer::render() 
+{
 
 }

@@ -3,25 +3,31 @@
 #include <cstdlib> // For rand()
 #include <cmath> // For std::abs
 
-Grid::Grid(SDL_Renderer* renderer) : renderer(renderer), hueTweak(0.0f) {
+Grid::Grid(SDL_Renderer* renderer) : renderer(renderer), hueTweak(0.0f) 
+{
     // Initialize grid cells
-    for (int i = 0; i < GRID_WIDTH; ++i) {
-        for (int j = 0; j < GRID_HEIGHT; ++j) {
+    for (int i = 0; i < GRID_WIDTH; ++i) 
+    {
+        for (int j = 0; j < GRID_HEIGHT; ++j) 
+        {
             cells[i][j].isActive = false;
         }
     }
 }
 
-Grid::~Grid() {
+Grid::~Grid() 
+{
     // Cleanup if needed
 }
 
-void Grid::handleClick(int mouseX, int mouseY) {
+void Grid::handleClick(int mouseX, int mouseY) 
+{
     // Determine which cell was clicked based on mouse coordinates
     int cellX = mouseX / (800 / GRID_WIDTH);
     int cellY = mouseY / (600 / GRID_HEIGHT);
 
-    if (cellX >= 0 && cellX < GRID_WIDTH && cellY >= 0 && cellY < GRID_HEIGHT) {
+    if (cellX >= 0 && cellX < GRID_WIDTH && cellY >= 0 && cellY < GRID_HEIGHT) 
+    {
         // Activate the clicked cell
         cells[cellX][cellY].isActive = true;
 
@@ -45,7 +51,8 @@ void Grid::handleClick(int mouseX, int mouseY) {
             int neighborX = cellX;
             int neighborY = cellY;
 
-            switch (randDirection) {
+            switch (randDirection) 
+            {
                 case 0: // Left
                     neighborX = (cellX > 0) ? cellX - 1 : cellX;
                     break;
@@ -60,7 +67,8 @@ void Grid::handleClick(int mouseX, int mouseY) {
                     break;
             }
 
-            if (neighborX != cellX || neighborY != cellY) {
+            if (neighborX != cellX || neighborY != cellY) 
+            {
                 cells[neighborX][neighborY].isActive = true;
 
                 // Determine color based on position relative to the grid
@@ -78,18 +86,21 @@ void Grid::handleClick(int mouseX, int mouseY) {
     }
 }
 
-void Grid::spawnRandomGrain(int mouseX, int mouseY) {
+void Grid::spawnRandomGrain(int mouseX, int mouseY) 
+{
     // Determine which cell the mouse pointer is currently over
     int cellX = mouseX / (800 / GRID_WIDTH);
     int cellY = mouseY / (600 / GRID_HEIGHT);
 
-    if (cellX >= 0 && cellX < GRID_WIDTH && cellY >= 0 && cellY < GRID_HEIGHT) {
+    if (cellX >= 0 && cellX < GRID_WIDTH && cellY >= 0 && cellY < GRID_HEIGHT) 
+    {
         // Randomly choose a neighboring cell to activate for sand effect
         int randDirection = rand() % 4;
         int neighborX = cellX;
         int neighborY = cellY;
 
-        switch (randDirection) {
+        switch (randDirection) 
+        {
             case 0: // Left
                 neighborX = (cellX > 0) ? cellX - 1 : cellX;
                 break;
@@ -122,14 +133,19 @@ void Grid::spawnRandomGrain(int mouseX, int mouseY) {
     }
 }
 
-void Grid::update() {
+void Grid::update() 
+{
     // Update grid
 }
 
-void Grid::render() {
-    for (int i = 0; i < GRID_WIDTH; ++i) {
-        for (int j = 0; j < GRID_HEIGHT; ++j) {
-            if (cells[i][j].isActive) {
+void Grid::render() 
+{
+    for (int i = 0; i < GRID_WIDTH; ++i) 
+    {
+        for (int j = 0; j < GRID_HEIGHT; ++j) 
+        {
+            if (cells[i][j].isActive) 
+            {
                 // Render cells with determined color
                 SDL_Rect rect = { i * (800 / GRID_WIDTH), j * (600 / GRID_HEIGHT), 800 / GRID_WIDTH, 600 / GRID_HEIGHT };
                 SDL_SetRenderDrawColor(renderer, cells[i][j].color.r, cells[i][j].color.g, cells[i][j].color.b, cells[i][j].color.a);
@@ -139,10 +155,12 @@ void Grid::render() {
     }
 }
 
-void Grid::HSVtoRGB(float h, float s, float v, int& r, int& g, int& b) {
+void Grid::HSVtoRGB(float h, float s, float v, int& r, int& g, int& b) 
+{
     int i;
     float f, p, q, t;
-    if (s == 0) {
+    if (s == 0) 
+    {
         // Achromatic (grey)
         r = g = b = static_cast<int>(v * 255.0f);
         return;
@@ -153,7 +171,8 @@ void Grid::HSVtoRGB(float h, float s, float v, int& r, int& g, int& b) {
     p = v * (1.0f - s);
     q = v * (1.0f - s * f);
     t = v * (1.0f - s * (1.0f - f));
-    switch (i) {
+    switch (i) 
+    {
         case 0:
             r = static_cast<int>(v * 255.0f);
             g = static_cast<int>(t * 255.0f);
@@ -187,6 +206,7 @@ void Grid::HSVtoRGB(float h, float s, float v, int& r, int& g, int& b) {
     }
 }
 
-void Grid::setColorTweak(float hueTweak) {
+void Grid::setColorTweak(float hueTweak) 
+{
     this->hueTweak = hueTweak;
 }

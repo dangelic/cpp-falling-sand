@@ -5,7 +5,8 @@
 
 #include <SDL.h>
 
-class Renderer {
+class Renderer 
+{
 public:
     Renderer(SDL_Renderer* renderer);
     ~Renderer(); 

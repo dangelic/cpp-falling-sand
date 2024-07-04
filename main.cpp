@@ -3,9 +3,11 @@
 #include "include/Grid.h"
 #include "include/Animation.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) 
+{
     // Initialize SDL and create window
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) 
+    {
         SDL_Log("SDL could not initialize! SDL_Error: %s", SDL_GetError());
         return -1;
     }
@@ -15,14 +17,16 @@ int main(int argc, char* argv[]) {
                                           SDL_WINDOWPOS_UNDEFINED,
                                           800, 600,
                                           SDL_WINDOW_SHOWN);
-    if (window == nullptr) {
+    if (window == nullptr) 
+    {
         SDL_Log("Window could not be created! SDL_Error: %s", SDL_GetError());
         SDL_Quit();
         return -1;
     }
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (renderer == nullptr) {
+    if (renderer == nullptr) 
+    {
         SDL_Log("Renderer could not be created! SDL_Error: %s", SDL_GetError());
         SDL_DestroyWindow(window);
         SDL_Quit();
@@ -48,35 +52,43 @@ int main(int argc, char* argv[]) {
     Uint32 animationDelay = 5; // ms
 
     // Main loop
-    while (!quit) {
+    while (!quit) 
+    {
         // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
+        while (SDL_PollEvent(&e) != 0) 
+        {
             // User requests quit
-            if (e.type == SDL_QUIT) {
+            if (e.type == SDL_QUIT) 
+            {
                 quit = true;
             }
             // Handle mouse events
-            if (e.type == SDL_MOUSEBUTTONDOWN) {
+            if (e.type == SDL_MOUSEBUTTONDOWN) 
+            {
                 mouseHeld = true;
                 SDL_GetMouseState(&mouseX, &mouseY);
                 grid.handleClick(mouseX, mouseY);
             }
-            if (e.type == SDL_MOUSEBUTTONUP) {
+            if (e.type == SDL_MOUSEBUTTONUP) 
+            {
                 mouseHeld = false;
             }
-            if (e.type == SDL_MOUSEMOTION && mouseHeld) {
+            if (e.type == SDL_MOUSEMOTION && mouseHeld) 
+            {
                 SDL_GetMouseState(&mouseX, &mouseY);
             }
         }
 
         // Spawn grains if mouse is held down
-        if (mouseHeld) {
+        if (mouseHeld) 
+        {
             grid.spawnRandomGrain(mouseX, mouseY);
         }
 
         // Update grid state with animation logic if enough time has passed
         Uint32 currentTime = SDL_GetTicks();
-        if (currentTime - lastUpdateTime >= animationDelay) {
+        if (currentTime - lastUpdateTime >= animationDelay) 
+        {
             animation.update();
             lastUpdateTime = currentTime;
         }
